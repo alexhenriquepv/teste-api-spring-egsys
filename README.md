@@ -82,7 +82,6 @@ A API responde nos seguintes endpoints principais:
     {
       "titulo": "Finalizar relatório",
       "descricao": "Escrever a conclusão e enviar.",
-      "dataHora": "2026-05-01T14:30:00",
       "categoria": {
         "id": 1
       }

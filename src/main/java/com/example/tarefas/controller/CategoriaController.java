@@ -5,6 +5,7 @@ import com.example.tarefas.repository.CategoriaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -31,12 +32,12 @@ public class CategoriaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Categoria criar(@RequestBody Categoria categoria) {
+    public Categoria criar(@Valid @RequestBody Categoria categoria) {
         return repository.save(categoria);
     }
 
     @PutMapping("/{id}")
-    public Categoria atualizar(@PathVariable Long id, @RequestBody Categoria categoria) {
+    public Categoria atualizar(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
         return repository.findById(id).map(c -> {
             c.setDescricao(categoria.getDescricao());
             return repository.save(c);

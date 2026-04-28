@@ -6,6 +6,7 @@ import com.example.tarefas.repository.TarefaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class TarefaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Tarefa criar(@RequestBody Tarefa tarefa) {
+    public Tarefa criar(@Valid @RequestBody Tarefa tarefa) {
         if (tarefa.getCategoria() == null || tarefa.getCategoria().getId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria é obrigatória");
         }
@@ -48,11 +49,10 @@ public class TarefaController {
     }
 
     @PutMapping("/{id}")
-    public Tarefa atualizar(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+    public Tarefa atualizar(@PathVariable Long id, @Valid @RequestBody Tarefa tarefa) {
         return tarefaRepository.findById(id).map(t -> {
             t.setTitulo(tarefa.getTitulo());
             t.setDescricao(tarefa.getDescricao());
-            t.setDataHora(tarefa.getDataHora());
 
             if (tarefa.getCategoria() != null && tarefa.getCategoria().getId() != null) {
                 var categoria = categoriaRepository.findById(tarefa.getCategoria().getId())
