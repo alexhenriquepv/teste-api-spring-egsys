@@ -22,7 +22,6 @@ public class Tarefa {
     @NotBlank(message = "O título é obrigatório")
     private String titulo;
 
-    @NotBlank(message = "A descrição é obrigatória")
     private String descricao;
 
     @NotNull(message = "A categoria é obrigatória")
