@@ -11,15 +11,15 @@ API REST para gerenciamento de tarefas.
 
 ## Como executar
 
-Você tem duas formas de executar a aplicação:
+Você tem três formas de executar a aplicação:
 
-### Opção 1: Via IDE (Recomendado)
+### Opção 1: IDE (Recomendado)
 1. Importe/abra a pasta do projeto na sua IDE.
 2. Aguarde a IDE baixar as dependências automaticamente.
 3. Navegue até o arquivo `TarefasApplication.java` (em `src/main/java/com/example/tarefas/TarefasApplication.java`).
 4. Execute a classe (Run).
 
-### Opção 2: Via Linha de Comando (Terminal)
+### Opção 2: Linha de Comando (Terminal)
 1. Certifique-se de que o Maven está instalado e configurado nas variáveis de ambiente.
 2. Abra um terminal na pasta raiz do projeto (onde está localizado o arquivo `pom.xml`).
 3. Execute o comando abaixo para iniciar a aplicação:
@@ -27,6 +27,17 @@ Você tem duas formas de executar a aplicação:
 ```bash
 mvn spring-boot:run
 ```
+
+### Opção 3: Docker
+Se você não possui Java ou Maven configurados na sua máquina, a forma mais rápida de avaliar o projeto é utilizando o Docker. O Docker Compose irá configurar todo o ambiente de forma transparente.
+1. Certifique-se de que o **Docker Desktop** ou **Docker Engine** está rodando no seu computador.
+2. Abra o terminal na pasta raiz do projeto (onde está o arquivo `docker-compose.yml`).
+3. Execute o comando abaixo:
+
+```bash
+docker-compose up --build
+```
+> **Nota:** Na primeira vez que for executado, o comando pode levar 1 ou 2 minutos, pois o Docker fará o download do Java 21, construirá a aplicação inteira sozinho e iniciará a API na sequência.
 
 Independente da opção escolhida, a aplicação estará disponível em: `http://localhost:8080`.
 
