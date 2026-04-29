@@ -41,6 +41,17 @@ docker-compose up --build
 
 Independente da opção escolhida, a aplicação estará disponível em: `http://localhost:8080`.
 
+## Testes Unitários
+
+O projeto possui uma suíte de testes unitários desenvolvida em **JUnit 5** e **Mockito**, validando as principais regras de negócio dos Controladores (`CategoriaController` e `TarefaController`), incluindo tratamento de exceções (como tentar criar tarefas com categorias inexistentes).
+
+Para rodar os testes, utilize o comando:
+
+```bash
+mvnw test
+```
+*(Se estiver no Windows, use `.\mvnw.cmd test`)*
+
 ### Interface Interativa
 
 O projeto conta com uma interface gráfica minimalista, funcional e testável embutida no próprio servidor. Desenvolvida para que você possa avaliar as rotas da API na prática. Iniciada a aplicação, ela pode ser testada em [http://localhost:8080/](http://localhost:8080/) no seu navegador!
