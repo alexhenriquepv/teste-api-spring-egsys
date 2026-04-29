@@ -2,6 +2,9 @@ package com.example.tarefas.controller;
 
 import com.example.tarefas.model.Categoria;
 import com.example.tarefas.repository.CategoriaRepository;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")
+@Tag(name = "Categorias", description = "Endpoints de categorias")
 public class CategoriaController {
 
     private final CategoriaRepository repository;

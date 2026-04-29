@@ -14,7 +14,7 @@ API REST para gerenciamento de tarefas.
 Você tem duas formas de executar a aplicação:
 
 ### Opção 1: Via IDE (Recomendado)
-1. Importe/abra a pasta do projeto (`egsys`) na sua IDE favorita.
+1. Importe/abra a pasta do projeto na sua IDE.
 2. Aguarde a IDE baixar as dependências automaticamente.
 3. Navegue até o arquivo `TarefasApplication.java` (em `src/main/java/com/example/tarefas/TarefasApplication.java`).
 4. Execute a classe (Run).
@@ -29,6 +29,31 @@ mvn spring-boot:run
 ```
 
 Independente da opção escolhida, a aplicação estará disponível em: `http://localhost:8080`.
+
+## Autenticação
+
+A API utiliza segurança baseada em **JWT (JSON Web Token)**. Ao iniciar a aplicação, um usuário padrão é criado automaticamente:
+- **Login:** `admin`
+- **Senha:** `admin`
+
+Para acessar os endpoints protegidos de categorias e tarefas, você deve primeiro fazer login e obter o token JWT:
+
+### 1. Fazer Login (`/auth/login`)
+- `POST /auth/login`
+- **Corpo da requisição (JSON):**
+  ```json
+  {
+    "login": "admin",
+    "senha": "admin"
+  }
+  ```
+- O retorno será o seu token. Exemplo: `{"token": "eyJhbG..."}`
+
+### 2. Usar o Token
+Nas requisições para criar, editar, listar ou deletar tarefas/categorias, adicione o cabeçalho HTTP:
+- `Authorization: Bearer SEU_TOKEN_AQUI`
+
+---
 
 ## Endpoints Principais
 
@@ -103,3 +128,6 @@ O console do H2 está habilitado para facilitar a visualização dos dados.
 A documentação interativa da API está configurada através do Swagger/OpenAPI.
 - **Acesse em:** `http://localhost:8080/swagger-ui.html`
 - **JSON Definition:** `http://localhost:8080/v3/api-docs`
+
+> **Dica de Autenticação no Swagger:**  
+> Como a API agora é protegida, você precisará clicar no botão verde **"Authorize"** (no canto superior direito do Swagger) e colar o seu token JWT gerado pela rota `/auth/login`. Após fazer isso, o Swagger passará a enviar o seu token em todas as requisições!

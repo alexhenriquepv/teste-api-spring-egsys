@@ -3,6 +3,9 @@ package com.example.tarefas.controller;
 import com.example.tarefas.model.Tarefa;
 import com.example.tarefas.repository.CategoriaRepository;
 import com.example.tarefas.repository.TarefaRepository;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tarefas")
+@Tag(name = "Tarefas", description = "Endpoints de tarefas")
 public class TarefaController {
 
     private final TarefaRepository tarefaRepository;
@@ -39,10 +43,10 @@ public class TarefaController {
         if (tarefa.getCategoria() == null || tarefa.getCategoria().getId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria é obrigatória");
         }
-        
+
         var categoria = categoriaRepository.findById(tarefa.getCategoria().getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não encontrada"));
-        
+
         tarefa.setCategoria(categoria);
 
         return tarefaRepository.save(tarefa);
@@ -56,7 +60,8 @@ public class TarefaController {
 
             if (tarefa.getCategoria() != null && tarefa.getCategoria().getId() != null) {
                 var categoria = categoriaRepository.findById(tarefa.getCategoria().getId())
-                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não encontrada"));
+                        .orElseThrow(
+                                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não encontrada"));
                 t.setCategoria(categoria);
             }
 
