@@ -41,6 +41,12 @@ docker-compose up --build
 
 Independente da opção escolhida, a aplicação estará disponível em: `http://localhost:8080`.
 
+### Interface Interativa
+
+O projeto conta com uma interface gráfica minimalista, funcional e testável embutida no próprio servidor. Desenvolvida para que você possa avaliar as rotas da API na prática. Iniciada a aplicação, ela pode ser testada em [http://localhost:8080/](http://localhost:8080/) no seu navegador!
+
+![Demonstração da Interface](demo.png) 
+
 ## Autenticação
 
 A API utiliza segurança baseada em **JWT (JSON Web Token)**. Ao iniciar a aplicação, um usuário padrão é criado automaticamente:
